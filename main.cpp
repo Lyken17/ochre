@@ -40,7 +40,7 @@ int main(int argc, char const *argv[]) {
     //
     // printf("result: %d\n", result);
 	// assert(result == 0);
-    int id = 0;
+    int id = 1;
     p.x = 1;
     p.y = 1;
 
