@@ -57,7 +57,7 @@ struct sub
 
         mid = lfu + rbd;
         mid /= 2;
-       length = ymax - ymin;
+        length = ymax - ymin;
     }
 
 
@@ -67,12 +67,18 @@ class octree
 {
 public:
     std::vector<sub> v;
+
+    void insert(vec3 pos, int index);
     std::set<int> query(vec3 start, vec3 end);
-    void insert(vec3 pos, int index, int id);
-    int awesomezlg;
+
+    float node_size;
     octree() {
-        sub T(vec3(0, 0, 0), vec3(100 ,100 ,100 ));
+        node_size = 6;
+        sub T(vec3(0, 0, 0), vec3(10 ,10 ,10 ));
         v.push_back(T);
-        awesomezlg = 1;
     }
+    
+private:
+    std::set<int> query(vec3 start, vec3 end, int id);
+    void insert(vec3 pos, int index, int id);
 };

@@ -22,21 +22,27 @@ int main(int argc, char const *argv[]) {
         int id;
     } p;
 
-    int id = 1;
+    int id = 0;
     p.x = 1;
     p.y = 1;
-
-    for (p.z=1; p.z <= 10; p.z++){
-		st.insert(vec3(p.x, p.y, p.z), id++, 0);
-	}
+    for (p.x = 0; p.x <= 10; p.x += 3)
+        for (p.y = 0; p.y <= 10; p.y += 3)
+            for (p.z = 0; p.z <= 10; p.z += 3){
+        		st.insert(vec3(p.x, p.y, p.z), id++);
+        	}
 
     int count = 0;
     for (auto i = st.v.begin() ; i != st.v.end() ; i++) {
-        cout << "line: " << count++ << " :";
+        cout << "subtree: " << count++ << " :" << endl;
+        for (size_t j = 0; j < 8; j++) {
+            if (i->tree[j] != -1) {
+                cout << "j : " << j <<" tree : " << i->tree[j] << endl;
+            }
+        }
         for (auto j = i->elements.begin() ; j != i->elements.end() ; j++) {
             cout << *j << " ";
         }
-        cout << endl;
+        cout << endl << "==========================" << endl;;
     }
 
     return 0;
