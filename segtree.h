@@ -7,9 +7,12 @@ struct sub
 {
     //bound coordinate
     float left, right, mid;
+    float bound[2];
+
     //sub tree index
     int l_sub, r_sub;
-    
+    int tree[2];
+
     std::set<int> elements;
     float length;
 
@@ -20,9 +23,20 @@ struct sub
 
     sub (float start, float end) {
         sub();
-        left = start;
-        right = end;
-        mid = left + right;
+
+        if (start > end) {
+            float temp = start;
+            start = end;
+            end = start;
+        }
+
+        tree[0] = l_sub = - 1;
+        tree[1] = r_sub = -1;
+
+        bound[0] = left = start;
+        bound[1] = right = end;
+
+        mid = (left + right) / 2;
         length = right - left;
     }
 };
@@ -37,7 +51,7 @@ public:
 
     float node_size;
     segtree() {
-        node_size = 0.5;
+        node_size = 2;
         sub T(0, 10);
         v.push_back(T);
     }

@@ -13,6 +13,11 @@
 typedef glm::vec3 vec3;
 using namespace std;
 
+void print(set<int> t) {
+    for (auto it = t.begin() ; it != t.end() ; it++)
+        cout << *it << " ";
+    cout << endl;
+}
 int main(int argc, char const *argv[]) {
 
     typedef set<int> SI;
@@ -27,14 +32,17 @@ int main(int argc, char const *argv[]) {
     p.y = 1;
     // for (p.x = 0; p.x <= 10; p.x += 3)
     //     for (p.y = 0; p.y <= 10; p.y += 3)
-    //         for (p.z = 0; p.z <= 10; p.z += 3){
-    //     		st.insert(vec3(p.x, p.y, p.z), id++);
-    //     	}
 
+    for (p.x = 0; p.x < 10; p.x += 0.2){
+		st.insert(vec3(p.x, p.y, p.z), id++);
+        //cout << "id :" << id << " px " << p.x << endl;
+	}
+
+    st.query(vec3(0, 0, 0), vec3(5, 0, 0));
     // int count = 0;
     // for (auto i = st.v.begin() ; i != st.v.end() ; i++) {
     //     cout << "subtree: " << count++ << " :" << endl;
-    //     for (size_t j = 0; j < 8; j++) {
+    //     for (size_t j = 0; j < 2; j++) {
     //         if (i->tree[j] != -1) {
     //             cout << "j : " << j <<" tree : " << i->tree[j] << endl;
     //         }
