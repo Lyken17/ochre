@@ -40,12 +40,13 @@ int main(int argc, char const *argv[]) {
     //
     // printf("result: %d\n", result);
 	// assert(result == 0);
-	for (p.x=1; p.x <= 10; p.x++)
-		for (p.y=1; p.y <= 10; p.y++)
-			for (p.z=1; p.z <= 10; p.z++){
-				int id = (p.z - 1 ) * 9 + (p.y - 1 ) * 3 + p.x - 1;
-				st.insert(vec3(p.x, p.y, p.z), id, 1);
-			}
+    int id = 0;
+    p.x = 1;
+    p.y = 1;
+
+    for (p.z=1; p.z <= 10; p.z++){
+		st.insert(vec3(p.x, p.y, p.z), id++, 0);
+	}
 
     int count = 0;
     for (auto i = st.v.begin() ; i != st.v.end() ; i++) {

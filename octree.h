@@ -10,10 +10,13 @@ struct sub
     vec3 lfu, lfd, lbu, lbd, rfu, rfd, rbu, rbd;
     vec3 mid;
     vec3 bound[8];
+
+    float size;
     //sub tree index
     int left_front_up, left_front_down, left_back_up, left_back_down;
     int right_front_up, right_front_down, right_back_up, right_back_down;
     int tree[8];
+
     bool divided;
     std::set<int> elements;
 
@@ -24,12 +27,13 @@ struct sub
         memset(tree, 0, sizeof(tree));
         memset(bound, 0, sizeof(bound));
 
+        size = 0;
         divided = false;
-        elements.clear();
     }
 
     sub (vec3 start, vec3 end) {
         sub();
+
         float xmax = MAX(start[0], end[0]);
         float ymax = MAX(start[1], end[1]);
         float zmax = MAX(start[2], end[2]);
@@ -50,6 +54,7 @@ struct sub
 
         mid = lfu + rbd;
         mid /= 2;
+        size = ymax - ymin;
     }
 
 
@@ -63,9 +68,7 @@ public:
     void insert(vec3 pos, int index, int id);
 
     octree() {
-        sub T;
-        v.push_back(T);
-        sub TT(vec3(0, 0, 0), vec3(10 ,10 ,10 ));
+        sub T(vec3(0, 0, 0), vec3(100 ,100 ,100 ));
         v.push_back(T);
     }
 };
