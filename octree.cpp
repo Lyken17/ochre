@@ -29,6 +29,7 @@ void octree::insert(vec3 pos, int index, int id) {
             v[id].tree[status] = v.size();
             v.push_back(sub(v[id].bound[status], v[id].mid));
         }
+        octree::insert(pos, index, v[id].tree[status]);
 
         // switch (status) {
         //     case 0: //x < mid.x && y < mid.y  && z < mid.z
