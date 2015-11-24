@@ -77,7 +77,7 @@ public:
         sub T(vec3(0, 0, 0), vec3(10 ,10 ,10 ));
         v.push_back(T);
     }
-    
+
 private:
     std::set<int> query(vec3 start, vec3 end, int id);
     void insert(vec3 pos, int index, int id);

@@ -19,7 +19,7 @@ LIBDIR=/usr/lib
 # If you have more source files add them here
 # SOURCE= scene.cpp image_util.cpp sphere.cpp vector.cpp trace.cpp raycast.cpp include/InitShader.cpp
 #SOURCE= scene.cpp image_util.cpp object.cpp trace.cpp raycast.cpp include/InitShader.cpp
-SOURCE= main.cpp octree.cpp
+SOURCE= main.cpp segtree.cpp
 
 # The compiler we are using
 CC= g++
