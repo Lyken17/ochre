@@ -9,17 +9,23 @@ struct sub
     //bound coordinate
     vec3 lfu, lfd, lbu, lbd, rfu, rfd, rbu, rbd;
     vec3 mid;
+    vec3 bound[8];
     //sub tree index
     int left_front_up, left_front_down, left_back_up, left_back_down;
     int right_front_up, right_front_down, right_back_up, right_back_down;
-
+    int tree[8];
     bool divided;
     std::set<int> elements;
 
     sub() {
         left_front_up = left_front_down = left_back_up = left_back_down = 0;
         right_front_up = right_front_down = right_back_up = right_back_down = 0;
+
+        memset(tree, 0, sizeof(tree));
+        memset(bound, 0, sizeof(bound));
+
         divided = false;
+        elements.clear();
     }
 
     sub (vec3 start, vec3 end) {
@@ -32,15 +38,15 @@ struct sub
         float ymin = MIN(start[1], end[1]);
         float zmin = MIN(start[2], end[2]);
 
-        lfu = vec3(xmin, ymax, zmax);
-        lfd = vec3(xmin, ymin, zmax);
-        lbu = vec3(xmin, ymax, zmin);
-        lbd = vec3(xmin, ymin, zmin);
+        bound[0] = lfu = vec3(xmin, ymax, zmax);
+        bound[1] = lfd = vec3(xmin, ymin, zmax);
+        bound[2] = lbu = vec3(xmin, ymax, zmin);
+        bound[3] = lbd = vec3(xmin, ymin, zmin);
 
-        rfu = vec3(xmax, ymax, zmax);
-        rfd = vec3(xmax, ymin, zmax);
-        rbu = vec3(xmax, ymax, zmin);
-        rbd = vec3(xmax, ymin, zmin);
+        bound[4] = rfu = vec3(xmax, ymax, zmax);
+        bound[5] = rfd = vec3(xmax, ymin, zmax);
+        bound[6] = rbu = vec3(xmax, ymax, zmin);
+        bound[7] = rbd = vec3(xmax, ymin, zmin);
 
         mid = lfu + rbd;
         mid /= 2;
